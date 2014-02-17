@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<javaee:handler-chains
+        xmlns:javaee="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/javaee_web_services_metadata_handler_2_0.xsd" >
+    <javaee:handler-chain>
+        <!--<javaee:handler>
+            <javaee:handler-name>TestSoapHandler</javaee:handler-name>
+            <javaee:handler-class>test.jee7.handlers.TestSoapHandleravaee:handler-class>
+        </javaee:handler>-->
+        <javaee:handler>
+            <javaee:handler-name>LdModelLogicalHandler</javaee:handler-name>
+            <javaee:handler-class>test.jee7.handlers.TestLogicalHandler</javaee:handler-class>
+        </javaee:handler>
+    </javaee:handler-chain>
+</javaee:handler-chains>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns="http://www.jee7.test.com/webservices/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  targetNamespace="http://www.jee7.test.com/webservices/">
+    <wsdl:types>
+        <xs:schema elementFormDefault="qualified" targetNamespace="http://www.jee7.test.com/webservices/">
+            <xs:element name="Reverse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="Reverse" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ReverseResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="ReverseResult" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Uppercase">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="Uppercase" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="UppercaseResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="UppercaseResult" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Lowercase">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="Lowercase" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="LowercaseResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="LowercaseResult" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="string" nillable="true" type="xs:string"/>
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="ReverseSoapIn">
+        <wsdl:part name="parameters" element="tns:Reverse"/>
+    </wsdl:message>
+    <wsdl:message name="ReverseSoapOut">
+        <wsdl:part name="parameters" element="tns:ReverseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="UppercaseSoapIn">
+        <wsdl:part name="parameters" element="tns:Uppercase"/>
+    </wsdl:message>
+    <wsdl:message name="UppercaseSoapOut">
+        <wsdl:part name="parameters" element="tns:UppercaseResponse"/>
+    </wsdl:message>
+    <wsdl:message name="LowercaseSoapIn">
+        <wsdl:part name="parameters" element="tns:Lowercase"/>
+    </wsdl:message>
+    <wsdl:message name="LowercaseSoapOut">
+        <wsdl:part name="parameters" element="tns:LowercaseResponse"/>
+    </wsdl:message>
+
+
+    <wsdl:portType name="StringService">
+        <wsdl:operation name="Reverse">
+            <wsdl:input message="tns:ReverseSoapIn"/>
+            <wsdl:output message="tns:ReverseSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="Uppercase">
+            <wsdl:input message="tns:UppercaseSoapIn"/>
+            <wsdl:output message="tns:UppercaseSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="Lowercase">
+            <wsdl:input message="tns:LowercaseSoapIn"/>
+            <wsdl:output message="tns:LowercaseSoapOut"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="StringService" type="tns:StringService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Reverse">
+            <soap:operation soapAction="http://www.jee7.test.com/webservices/Reverse" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Uppercase">
+            <soap:operation soapAction="http://www.jee7.test.com/webservices/Uppercase" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Lowercase">
+            <soap:operation soapAction="http://www.jee7.test.com/webservices/Lowercase" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="StringService">
+        <wsdl:port name="StringService" binding="tns:StringService">
+            <soap:address location="http://www.jee7.test.com/webservices/MyService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
