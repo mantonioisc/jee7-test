@@ -1,6 +1,5 @@
 package test.jee7.producers;
 
-import org.apache.log4j.BasicConfigurator;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -17,12 +16,8 @@ import javax.inject.Inject;
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
-public class PropertyProducerIT {
-    static {
-        BasicConfigurator.configure();
-    }
-
-    private static final Logger logger = LoggerFactory.getLogger(PropertyProducerIT.class);
+public class ManagedPropertyProducerIT {
+    private static final Logger logger = LoggerFactory.getLogger(ManagedPropertyProducerIT.class);
 
     @Inject
     @ManagedProperty("string.property")

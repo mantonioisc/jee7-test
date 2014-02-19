@@ -1,26 +1,22 @@
 package test.jee7.producers;
 
-import org.apache.log4j.BasicConfigurator;
 import org.junit.Test;
 import test.jee7.annotations.ManagedProperty;
 
 import javax.enterprise.inject.spi.InjectionPoint;
 import java.util.Properties;
 
-import static org.easymock.EasyMock.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-public class ManagedManagedPropertyProducerTest {
-    static {
-        BasicConfigurator.configure();
-    }
-
+public class ManagedPropertyProducerTest {
     private static final Properties PROPERTIES = new Properties() {{
         put("string.property", "string value");
         put("int.property", "1000");
         put("empty.property", "");
-        put("defaultToFieldName", "no value was passed to @Property");
+        put("defaultToFieldName", "no value was passed to @ManagedProperty");
     }};
 
 
@@ -66,7 +62,7 @@ public class ManagedManagedPropertyProducerTest {
         ManagedPropertyProducer managedPropertyProducer = createStubPropertyProducer(null);
         String stringProperty = managedPropertyProducer.injectStringProperty(null);
 
-        assertEquals("no value was passed to @Property", stringProperty);
+        assertEquals("no value was passed to @ManagedProperty", stringProperty);
     }
 
 
@@ -79,17 +75,16 @@ public class ManagedManagedPropertyProducerTest {
 
             @Override
             ManagedProperty getPropertyAnnotation(InjectionPoint injectionPoint) {
-                ManagedProperty mock = createMock(ManagedProperty.class);
+                ManagedProperty mock = mock(ManagedProperty.class);
 
-                expect(mock.value()).andReturn(key);
-                replay(mock);
+                when(mock.value()).thenReturn(key);
 
                 return mock;
             }
 
             @Override
             Class<?> getDeclaringClass(InjectionPoint injectionPoint) {
-                return ManagedManagedPropertyProducerTest.class;
+                return ManagedPropertyProducerTest.class;
             }
 
             @Override
