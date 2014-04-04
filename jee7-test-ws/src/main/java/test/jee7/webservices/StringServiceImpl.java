@@ -3,6 +3,7 @@ package test.jee7.webservices;
 import com.test.jee7.webservices.StringService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import test.jee7.dao.GamesDao;
 import test.jee7.ejbs.BusinessService;
 import test.jee7.ejbs.StringTransformationService;
 
@@ -27,8 +28,12 @@ public class StringServiceImpl implements StringService {
     @Resource
     WebServiceContext webServiceContext;
 
+    @EJB
+    GamesDao gamesDao;
+
     @Override
     public String reverse(@WebParam(name = "Reverse", targetNamespace = "http://www.jee7.test.com/webservices/") String reverse) {
+        gamesDao.test();
         businessService.businessOperation();
         return stringTransformationService.reverse(reverse);
     }

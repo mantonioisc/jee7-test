@@ -9,18 +9,20 @@
 
 ##Instructions
 
-###Create the following resource using Glassfish **asadmin**
+###Create the following resource
+ Using Glassfish **asadmin**
+
     asadmin create-custom-resource --restype java.util.Properties --factoryclass org.glassfish.resources.custom.factory.PropertiesFactory --property "sample.property"="This property comes from glassfish-resources.xml file":"string.property"="The quick brown fox jumps over the lazy dog.":"int.property"="1111":"double.property"="11111.11":"true.boolean.property"="true":"false.boolean.property"="false":"defaultToFieldName"="no was given in the annotation"  project.properties
 
 
 ###Configure PostgreSQL driver
-Download the driver from: (http://jdbc.postgresql.org/download.html)
-Copy **postgresql-9.3-1101.jdbc41.jar** to:
+1. Download the driver from [here](http://jdbc.postgresql.org/download.html)
+2. Copy **postgresql-9.3-1101.jdbc41.jar** to:
 
-    $GLASSFISH_HOME%\Glassfish\domains\domain1\lib\
+        $GLASSFISH_HOME%\Glassfish\domains\domain1\lib\
 
 ###Create JDBC datasource in Glassfish
-Run these two **asadmin** commands
+Run these two **asadmin** commands:
 
     asadmin create-jdbc-connection-pool --datasourceclassname org.postgresql.ds.PGConnectionPoolDataSource --restype javax.sql.ConnectionPoolDataSource --property "serverName=localhost:portNumber=5432:databaseName=games:user=postgres:password=admin" Games
     asadmin create-jdbc-resource --connectionpoolid Games jdbc/Games
@@ -32,7 +34,7 @@ Change database user and password if needed
 2. Run the contents of **postgresql-insert.sql** to create some sample data.
 
 ###To use Glassfish plugin
-Add passwordFile or adminPassword to user **settings.xml**
+Add passwordFile or adminPassword to user **settings.xml**.
 The passwordFile of a Glassfish installation is usually at:
 
     $GLASSFISH_HOME%\Glassfish\domains\domain1\config\keyfile
